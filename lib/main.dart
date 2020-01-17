@@ -6,41 +6,37 @@ void main() => runApp(XylophoneApp());
 
 class XylophoneApp extends StatelessWidget {
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        body: SafeArea(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              generateNote(color: Colors.red, note: 1),
-              generateNote(color: Colors.orange, note: 2),
-              generateNote(color: Colors.yellow, note: 3),
-              generateNote(color: Colors.green, note: 4),
-              generateNote(color: Colors.teal, note: 5),
-              generateNote(color: Colors.blue, note: 6),
-              generateNote(color: Colors.deepPurple, note: 7),
-            ],
+  Widget build(BuildContext context) => MaterialApp(
+        home: Scaffold(
+          body: SafeArea(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                generateNote(Colors.red, 1),
+                generateNote(Colors.orange, 2),
+                generateNote(Colors.yellow, 3),
+                generateNote(Colors.green, 4),
+                generateNote(Colors.teal, 5),
+                generateNote(Colors.blue, 6),
+                generateNote(Colors.deepPurple, 7),
+              ],
+            ),
           ),
         ),
-      ),
-    );
-  }
+      );
 
-  Widget generateNote({Color color, int note}) {
-    return Expanded(
-      flex: 1,
-      child: FlatButton(
-        onPressed: () {
-          playSound(note);
-        },
-        color: color,
-      ),
-    );
-  }
+  Widget generateNote(Color color, int note) => Expanded(
+        flex: 1,
+        child: FlatButton(
+          onPressed: () {
+            playSound(note);
+          },
+          color: color,
+        ),
+      );
 
   void playSound(int note) {
     final player = new AudioCache();
-    player.play('note${note}.wav');
+    player.play('note$note.wav');
   }
 }
